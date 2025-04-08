@@ -19,15 +19,10 @@ Build a small web app that loads a list of cities, fetches geolocation data for 
 ## ✅ Requirements
 
 ### 1. Load City List
-- Your app should **fetch a list of city names** from a `.json` file hosted online (e.g., via [JSONPlaceholder](https://jsonplaceholder.typicode.com/) or a `raw` GitHub URL).
-- Example format:
-  ```json
-  [
-    "Paris",
-    "New York",
-    "Tokyo"
-  ]
-  ```
+- Your app should **fetch a list of city names** from the public API:
+  [`https://countriesnow.space/api/v0.1/countries`](https://countriesnow.space/api/v0.1/countries).
+- From the response, randomly select **20 countries**, and then randomly select **1 city per country**.
+- Use these 20 cities as the source list for the rest of the task.
 
 ### 2. Fetch Geo Data
 - For each city, call the API:  
@@ -86,7 +81,11 @@ If you're up for a bit of fun, try adding one of the following features:
   - For example, show only cities with temperature above 20°C, or population below 1 million.
   - The available filter options should be dynamically based on the data in your column.
 
-This is totally optional — just a chance to show off your creativity and have fun with the task!
+- **Easter Egg Mode** 🥚: If the user searches for a mystery city (e.g., "Atlantis"), show a fun/fake location response — be creative!
+- **City Emoji** 🌆: Add a column that shows an emoji or small icon based on the country's flag or the weather of the city (you can mock this if needed).
+- **Random Travel Tip** ✈️: When clicking a city name, show a travel tip or a fun fact fetched from a public API or mocked locally.
+
+These are totally optional — just a chance to show off your creativity and have fun with the task!
 
 ---
 
@@ -102,12 +101,12 @@ You can use **any tech stack** you're comfortable with.
 
 ## 🚀 How to Submit
 
-- Clone this repository to your own Github before you start your task.
-- When you're happy with the result send us the link to your cloned repo (should be publicly available)
+- Push your solution to a **public GitHub repository**.
+- Submit it as a **pull request** titled `intern-task`.
 - In your README or comments, please include:
   - Instructions for running the app (especially if backend or PHP is involved)
   - A short explanation of your distance formula
-  - How you used AI tools
+  - How you used AI tools (if applicable)
   - Any assumptions or trade-offs you made
 
 ---
