@@ -39,7 +39,7 @@ Build a small web app that loads a list of cities, fetches geolocation data for 
 
 ### 4. Calculate Distance
 - Add **two distance columns** to your table:
-  - `Distance (Your Formula)`: Calculate the distance from the user to each city using **any formula you like** (e.g., Haversine).
+  - `Distance (Your Formula)`: Calculate the distance from the user to each city using **any formula you like** (e.g., Haversine). Be sure to provide your implementation.
     - 📌 Be sure to **explain the formula** briefly in your code or README.
   - `Distance (AI-Generated)`: Recreate the same logic using an **AI-generated implementation** (e.g., using ChatGPT, GitHub Copilot, etc.).
     - Note **how you used AI** (e.g., did it generate the code? help troubleshoot? suggest structure?).
