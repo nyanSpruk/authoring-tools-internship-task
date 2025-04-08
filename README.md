@@ -75,17 +75,14 @@ If you're up for a bit of fun, try adding one of the following features:
   - Wind speed
   - Population
   - Local time
+  - Map
   - Anything else fun or informative
 
   Then, provide a **UI toggle (e.g., switch or dropdown)** that lets users filter the table to only show entries that match criteria based on this custom column.
   - For example, show only cities with temperature above 20°C, or population below 1 million.
   - The available filter options should be dynamically based on the data in your column.
 
-- **Easter Egg Mode** 🥚: If the user searches for a mystery city (e.g., "Atlantis"), show a fun/fake location response — be creative!
-- **City Emoji** 🌆: Add a column that shows an emoji or small icon based on the country's flag or the weather of the city (you can mock this if needed).
-- **Random Travel Tip** ✈️: When clicking a city name, show a travel tip or a fun fact fetched from a public API or mocked locally.
-
-These are totally optional — just a chance to show off your creativity and have fun with the task!
+This is totally optional — just a chance to show off your creativity and have fun with the task!
 
 ---
 
