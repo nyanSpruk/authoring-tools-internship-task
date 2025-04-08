@@ -79,8 +79,7 @@ If you're up for a bit of fun, try adding one of the following features:
   - Anything else fun or informative
 
   Then, provide a **UI toggle (e.g., switch or dropdown)** that lets users filter the table to only show entries that match criteria based on this custom column.
-  - For example, show only cities with temperature above 20°C, or population below 1 million.
-  - The available filter options should be dynamically based on the data in your column.
+  - For example, show only cities with temperature above 20°C, or population below 1 million or windy cities,...
 
 This is totally optional — just a chance to show off your creativity and have fun with the task!
 
@@ -99,7 +98,7 @@ You can use **any tech stack** you're comfortable with.
 ## 🚀 How to Submit
 
 - Push your solution to a **public GitHub repository**.
-- Submit it as a **pull request** titled `intern-task`.
+- Submit it as a **pull request** titled `intern-task-name-surrname`.
 - In your README or comments, please include:
   - Instructions for running the app (especially if backend or PHP is involved)
   - A short explanation of your distance formula
@@ -110,7 +109,7 @@ You can use **any tech stack** you're comfortable with.
 
 ## 💬 Questions?
 
-If anything is unclear, feel free to reach out to **markopanger** — we're happy to help.
+If anything is unclear, feel free to reach out to `markopangerceltra` — we're happy to help.
 
 We’re looking forward to seeing your work — good luck and have fun!
 
