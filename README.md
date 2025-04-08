@@ -87,7 +87,7 @@ This is totally optional — just a chance to show off your creativity and have 
 
 ## 🛠️ Tech Stack
 
-You can use **any tech stack** you're comfortable with.
+You can use **any tech stack** you're comfortable with and you can use a **ui framework of your choice**.
 
 > 💡 **Bonus Points**  
 > We use **Vue 3 (Composition API)** with **Pinia** for state management and **TypeScript**.  
@@ -98,7 +98,7 @@ You can use **any tech stack** you're comfortable with.
 ## 🚀 How to Submit
 
 - Push your solution to a **public GitHub repository**.
-- Submit it as a **pull request** titled `intern-task-name-surrname`.
+- Submit it as a **pull request** titled `intern-task-name-surname`.
 - In your README or comments, please include:
   - Instructions for running the app (especially if backend or PHP is involved)
   - A short explanation of your distance formula
