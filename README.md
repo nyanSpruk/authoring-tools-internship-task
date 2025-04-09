@@ -12,35 +12,26 @@ If something isn’t finished or you’ve made trade-offs, that’s totally fine
 
 ## 🧠 Task Overview
 
-Build a small web app that loads a list of cities, fetches geolocation data for each one, calculates the distance from the user, and displays everything in a responsive table.
+Build a small web app that loads a list of cities from a local server, calculates the distance from the user, and displays everything in a responsive table.
+When the user clicks on a city (a row), the app should recalculate distances from that city to the others.
 
 ---
 
 ## ✅ Requirements
 
 ### 1. Load City List
-- Your app should **fetch a list of city names** from the public API:
-  [`https://countriesnow.space/api/v0.1/countries`](https://countriesnow.space/api/v0.1/countries).
-- From the response, randomly select **20 countries**, and then randomly select **1 city per country**.
-- Use these 20 cities as the source list for the rest of the task.
+- Your app should **fetch a list of city names** from a locally spawned server that serves the list of cities [`assets/cities.json`](assets/cities.json).
+  Use a public available *json server* of your choice. You can also use a service that hosts the file. 
+- From the response, randomly select **25 countries**, and then randomly select **1 city per country**.
+- Use these 25 cities as the source list for the rest of the task.
 
-### 2. Fetch Geo Data
-- For each city, call the API:  
-  `https://geoip.celtra.com/search?q=<city_name>`
-- Parse the relevant data from the API response and display:
-  - City name
-  - Coordinates
-  - Country name
-  - Country code
-- If a city exists in **multiple countries**, research how to differentiate those results and include an **additional column of your choice** to clarify the distinction (e.g., region, timezone, population — your call).
-
-### 3. Get Current Location
+### 2. Get Current Location
 - Use the **browser’s Geolocation API** to get the user's current location.
 
-### 4. Calculate Distance
+### 3. Calculate Distance
 - Add **two distance columns** to your table:
-  - `Distance (Your Formula)`: Calculate the distance from the user to each city using **any formula you like** (e.g., Haversine). Be sure to provide your implementation.
-    - 📌 Be sure to **explain the formula** briefly in your code or README.
+  - `Distance (Your Formula)`: Calculate the distance from the user to each city using **any formula you like** (e.g., Haversine). Be sure to provide your own implementation.
+    - 📌 Be sure to **briefly explain your formula** in the code or README.
   - `Distance (AI-Generated)`: Recreate the same logic using an **AI-generated implementation** (e.g., using ChatGPT, GitHub Copilot, etc.).
     - Note **how you used AI** (e.g., did it generate the code? help troubleshoot? suggest structure?).
 
@@ -48,13 +39,12 @@ Build a small web app that loads a list of cities, fetches geolocation data for 
 
 ---
 
-## 5. Display in a Responsive Table
+## 4. Display in a Responsive Table
 - Present all results in a styled, scrollable table.
 - The table should include the following columns:
   - City Name
   - Country Name
   - Country Code
-  - Your custom disambiguation column (if needed)
   - Coordinates
   - Distance (Your Formula)
   - Distance (AI-Generated)
@@ -62,6 +52,9 @@ Build a small web app that loads a list of cities, fetches geolocation data for 
   - On very small screens (**< 200px**), show **only**:
     - City Name
     - Distance (Your Formula)
+
+### 5. UI Interaction
+- When the user clicks on a city name, recalculate distances from the selected city to all the others (instead of the current location).
 
 ---
 
@@ -78,8 +71,8 @@ If you're up for a bit of fun, try adding one of the following features:
   - Map
   - Anything else fun or informative
 
-  Then, provide a **UI toggle (e.g., switch or dropdown)** that lets users filter the table to only show entries that match criteria based on this custom column.
-  - For example, show only cities with temperature above 20°C, or population below 1 million or windy cities,...
+  Then, provide a **UI toggle** (e.g., switch or dropdown) that lets users filter the table to only show entries that match criteria based on this custom column.
+  - For example: cities with temperature above 20°C, population below 1 million, or particularly windy places.
 
 This is totally optional — just a chance to show off your creativity and have fun with the task!
 
@@ -87,7 +80,7 @@ This is totally optional — just a chance to show off your creativity and have 
 
 ## 🛠️ Tech Stack
 
-You can use **any tech stack** you're comfortable with and you can use a **ui framework of your choice**.
+You can use **any tech stack** you're comfortable with, and a **UI framework of your choice**.
 
 > 💡 **Bonus Points**  
 > We use **Vue 3 (Composition API)** with **Pinia** for state management and **TypeScript**.  
