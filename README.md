@@ -39,7 +39,7 @@ When the user clicks on a city (a row), the app should recalculate distances fro
 
 ---
 
-## 4. Display in a Responsive Table
+### 4. Display in a Responsive Table
 - Present all results in a styled, scrollable table.
 - The table should include the following columns:
   - City Name
@@ -90,8 +90,8 @@ You can use **any tech stack** you're comfortable with, and a **UI framework of 
 
 ## 🚀 How to Submit
 
-- Push your solution to a **public GitHub repository**.
-- Submit it as a **pull request** titled `intern-task-name-surname`.
+- Fork this repository to your own Github before you start your task.
+- When you're happy with the result submit a **pull request** and send us the link or add `markopangerceltra` as collaborator if it's a private repository.
 - In your README or comments, please include:
   - Instructions for running the app (especially if backend or PHP is involved)
   - A short explanation of your distance formula
