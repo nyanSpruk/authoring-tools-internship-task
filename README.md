@@ -17,6 +17,54 @@ When the user clicks on a city (a row), the app should recalculate distances fro
 
 ---
 
+## TODO List
+
+- [x] Load City List
+- [ ] Get Current Location
+- [ ] Calculate Distance by own Formula
+- [ ] Calculate Distance by AI-Generated Formula
+- [ ] Display in a Responsive Table
+- [ ] UI Interaction
+- [ ] Optional Fun Challenge
+- [ ] Make design look nice
+- [ ] Write a README
+  
+
+## 📘 Notes
+
+### Local Server
+I have decided to use express.js with typescript to create a local server that serves the list of cities, because I am the most familiar with it. 
+
+The local file `assets/cities.json` is quite large, and it takes a while to load. For this project we will work with 25 random cities, the frontend does not need to know the whole list of cities and I do not want the frontend to wait for the file to load. That is why I have create endpoints that will serve the data in a better way:
+
+#### 1. `/cities`
+Returns a paginated list of cities. For faster loading, the server will only return the first 25 cities with pagination.
+
+**Query Parameters:**
+- `limit` (optional) — Number of cities to return.  
+  _Default: `25`_
+- `page` (optional) — Page number for pagination.  
+  _Default: `1`_
+
+#### 2. `/cities/random`
+Returns a random selection of unique countries and cities, which will be used for our project. 
+
+**Query Parameters:**
+- `count` (optional) — Number of random cities to return.  
+  _Default: `25`_
+
+---
+
+### 🧪 Examples
+
+- `/api/random?count=10`  
+  → Returns 10 random cities.
+
+- `/api/data?page=2`  
+  → Returns the second set of 25 cities (i.e., cities 26–50).
+
+
+
 ## ✅ Requirements
 
 ### 1. Load City List
