@@ -23,6 +23,8 @@ When the user clicks on a city (a row), the app should recalculate distances fro
 - [x] Get Current Location
 - [x] Calculate Distance by own Formula
 - [x] Calculate Distance by AI-Generated Formula
+- [ ] Fetch data from local server
+- [ ] Implement state management
 - [ ] Display in a Responsive Table
 - [ ] UI Interaction
 - [ ] Optional Fun Challenge
