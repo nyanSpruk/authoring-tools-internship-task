@@ -11,7 +11,8 @@ const { latitude, longitude, error, getLocation } = useGeolocation();
 onMounted(() => {
   getLocation();
 });
-const distance = ref(0);
+const distanceMine = ref(0);
+const distanceAI = ref(0);
 
 const tokyoLocation = {
   latitude: 35.6895,
@@ -22,7 +23,13 @@ watch(
   [latitude, longitude],
   ([lat, lon]) => {
     if (lat !== null && lon !== null) {
-      distance.value = haversineDistanceMine(
+      distanceMine.value = haversineDistanceMine(
+        lat,
+        lon,
+        tokyoLocation.latitude,
+        tokyoLocation.longitude
+      );
+      distanceAI.value = haversineDistanceAI(
         lat,
         lon,
         tokyoLocation.latitude,
@@ -41,7 +48,8 @@ defineProps<{ msg: string }>();
   <div v-if="error">Error: {{ error }}</div>
   <div v-else-if="latitude && longitude">
     <p>Location: {{ latitude }}, {{ longitude }}</p>
-    <p>Distance: {{ distance }} km</p>
+    <p>My formula for distance: {{ distanceMine }} km</p>
+    <p>AI formula for distance: {{ distanceAI }} km</p>
   </div>
   <div v-else>Loading location...</div>
   <p>{{ msg }}</p>

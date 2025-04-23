@@ -23,6 +23,37 @@ export const haversineDistanceMine = (
   return Math.round(d) / 1000;
 };
 
-export const haversineDistanceAI = () => {
-  return "AItomato";
-};
+/**
+ * Calculates the distance between two geographic points using the Haversine formula.
+ * @param lat1 Latitude of point A in decimal degrees.
+ * @param lon1 Longitude of point A in decimal degrees.
+ * @param lat2 Latitude of point B in decimal degrees.
+ * @param lon2 Longitude of point B in decimal degrees.
+ * @returns Distance between the two points in kilometers, rounded to 2 decimal places.
+ */
+export function haversineDistanceAI(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+): number {
+  const toRadians = (deg: number) => (deg * Math.PI) / 180;
+
+  const R = 6371; // Earth's radius in kilometers
+
+  const φ1 = toRadians(lat1);
+  const φ2 = toRadians(lat2);
+  const Δφ = toRadians(lat2 - lat1);
+  const Δλ = toRadians(lon2 - lon1);
+
+  const a =
+    Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  const distance = R * c;
+
+  // Round to 2 decimal places and return as a number
+  return parseFloat(distance.toFixed(3));
+}

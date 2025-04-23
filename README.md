@@ -22,7 +22,7 @@ When the user clicks on a city (a row), the app should recalculate distances fro
 - [x] Load City List
 - [x] Get Current Location
 - [x] Calculate Distance by own Formula
-- [ ] Calculate Distance by AI-Generated Formula
+- [x] Calculate Distance by AI-Generated Formula
 - [ ] Display in a Responsive Table
 - [ ] UI Interaction
 - [ ] Optional Fun Challenge
@@ -55,7 +55,7 @@ Returns a random selection of unique countries and cities, which will be used fo
 
 ---
 
-### 🧪 Examples
+#### 🧪 Examples
 
 - `/api/random?count=10`  
   → Returns 10 random cities.
@@ -64,7 +64,15 @@ Returns a random selection of unique countries and cities, which will be used fo
   → Returns the second set of 25 cities (i.e., cities 26–50).
 
 ### Haversine Formula
+#### My implementation
 For my implementation of the distance between two points on a sphere, I used the Haversine formula. The equation used in my implementation was found on [wikipedia](https://en.wikipedia.org/wiki/Haversine_formula). The function can be found in `front_app/src/functions/Distance.ts` file in the `haversineDistanceMine` function.
+
+#### AI implementation
+I used `ChatGPT o4-mini-high`, which is described as "Great at coding and visual tasks". I don't use this model often, but I wanted to see how it would perform. I asked it the following prompt:
+```
+In typescript can you generate a method to calculate the distance between two points on a sphere and return a rounded distance in kilometers to 3 decimal places
+```
+The AI generated code can be found in the `front_app/src/functions/Distance.ts` file in the `haversineDistanceAI` function. Alongside the code, it also wrote a explanation of params and return values, which I found very useful.
 
 ## ✅ Requirements
 
