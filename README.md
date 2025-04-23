@@ -20,8 +20,8 @@ When the user clicks on a city (a row), the app should recalculate distances fro
 ## TODO List
 
 - [x] Load City List
-- [ ] Get Current Location
-- [ ] Calculate Distance by own Formula
+- [x] Get Current Location
+- [x] Calculate Distance by own Formula
 - [ ] Calculate Distance by AI-Generated Formula
 - [ ] Display in a Responsive Table
 - [ ] UI Interaction
@@ -63,7 +63,8 @@ Returns a random selection of unique countries and cities, which will be used fo
 - `/api/data?page=2`  
   → Returns the second set of 25 cities (i.e., cities 26–50).
 
-
+### Haversine Formula
+For my implementation of the distance between two points on a sphere, I used the Haversine formula. The equation used in my implementation was found on [wikipedia](https://en.wikipedia.org/wiki/Haversine_formula). The function can be found in `front_app/src/functions/Distance.ts` file in the `haversineDistanceMine` function.
 
 ## ✅ Requirements
 
