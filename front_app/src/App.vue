@@ -3,9 +3,11 @@ import { computed, onMounted, ref } from "vue";
 import Table from "./components/Table.vue";
 import { useCitiesStore } from "./stores/cityStore";
 import { useLocationStore } from "./stores/locationStore";
+import { useDistanceStore } from "./stores/distanceStore";
 
 const citiesStore = useCitiesStore();
 const locationStore = useLocationStore();
+const distanceStore = useDistanceStore();
 
 const loading = ref(true);
 const fetchError = ref<string | null>(null);
@@ -13,6 +15,9 @@ const isLoading = computed(
   () => loading.value || locationStore.loadingLocation
 );
 const showRetryLocation = computed(() => !!locationStore.locationError);
+
+const userLocation = computed(() => locationStore.userLocation);
+const currentLocation = computed(() => locationStore.currentLocation);
 
 onMounted(async () => {
   loading.value = true;
@@ -45,13 +50,20 @@ onMounted(async () => {
 
   <div v-else>
     <p>
-      Your location: ({{ locationStore.userLocation?.latitude }},
-      {{ locationStore.userLocation?.longitude }})
+      Your location: ({{ userLocation?.latitude }},
+      {{ userLocation?.longitude }})
     </p>
     <p>
-      Current location: ({{ locationStore.currentLocation?.latitude }},
-      {{ locationStore.currentLocation?.longitude }})
+      Current location: ({{ currentLocation?.latitude }},
+      {{ currentLocation?.longitude }})
     </p>
+    <!-- Button use own location again -->
+    <button
+      v-if="userLocation"
+      @click="locationStore.updateCurrentLocation(userLocation)"
+    >
+      Use my location
+    </button>
     <Table />
   </div>
 </template>

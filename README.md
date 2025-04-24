@@ -24,9 +24,9 @@ When the user clicks on a city (a row), the app should recalculate distances fro
 - [x] Calculate Distance by own Formula
 - [x] Calculate Distance by AI-Generated Formula
 - [x] Fetch data from local server
-- [ ] Implement state management
-- [ ] Display in a Responsive Table
-- [ ] UI Interaction
+- [x] Implement state management
+- [x] Display in a Responsive Table
+- [x] UI Interaction
 - [ ] Optional Fun Challenge
 - [ ] Make design look nice
 - [ ] Write a README

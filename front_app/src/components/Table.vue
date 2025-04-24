@@ -2,9 +2,13 @@
 import { computed } from "vue";
 import { useCitiesStore } from "../stores/cityStore";
 import { useLocationStore } from "../stores/locationStore";
+import { useDistanceStore } from "../stores/distanceStore";
+import { storeToRefs } from "pinia";
 
 const citiesStore = useCitiesStore();
 const locationStore = useLocationStore();
+const distanceStore = useDistanceStore();
+const { distancesMine, distancesAI } = storeToRefs(distanceStore); // for reactivity
 
 const citiesList = computed(() => citiesStore.citiesList);
 </script>
@@ -14,17 +18,17 @@ const citiesList = computed(() => citiesStore.citiesList);
     <thead>
       <tr>
         <th>City Name</th>
-        <th>Country Name</th>
-        <th>Country Code</th>
-        <th>Coordinates</th>
+        <th class="hide">Country Name</th>
+        <th class="hide">Country Code</th>
+        <th class="hide">Coordinates</th>
         <th>Distance (My)</th>
-        <th>Distance (AI)</th>
+        <th class="hide">Distance (AI)</th>
       </tr>
     </thead>
     <tbody>
       <tr
         v-if="citiesList?.length"
-        v-for="city in citiesList"
+        v-for="(city, index) in citiesList"
         @click="
           locationStore.updateCurrentLocation({
             latitude: city.lat,
@@ -33,11 +37,11 @@ const citiesList = computed(() => citiesStore.citiesList);
         "
       >
         <td>{{ city.name }}</td>
-        <td>{{ city.country_name }}</td>
-        <td>{{ city.country }}</td>
-        <td>( {{ city.lat }}, {{ city.lng }})</td>
-        <td>1000km</td>
-        <td>1000km</td>
+        <td class="hide">{{ city.country_name }}</td>
+        <td class="hide">{{ city.country }}</td>
+        <td class="hide">( {{ city.lat }}, {{ city.lng }})</td>
+        <td>{{ distancesMine[index]?.toFixed(2) }} km</td>
+        <td class="hide">{{ distancesAI[index]?.toFixed(2) }} km</td>
       </tr>
     </tbody>
   </table>
@@ -58,5 +62,11 @@ td {
 
 th {
   background-color: #735151;
+}
+
+@media (max-width: 200px) {
+  .hide {
+    display: none;
+  }
 }
 </style>
