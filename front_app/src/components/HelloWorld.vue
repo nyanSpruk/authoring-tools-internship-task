@@ -1,36 +1,42 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import { useGeolocation } from "../composable/useGeolocation";
+import Table from "./Table.vue";
+
 import {
   haversineDistanceMine,
   haversineDistanceAI,
 } from "../functions/Distance";
 import { type City } from "../types/City";
 
-import { fetchCities } from "../functions/Data";
+// import { fetchCities } from "../functions/Data";
+import { useCitiesStore } from "../stores/cityStore";
 
 const { latitude, longitude, error, getLocation } = useGeolocation();
 
-onMounted(() => {
-  getLocation();
-  loadCities();
-});
+// onMounted(() => {
+//   getLocation();
+//   loadCities();
+// });
 const distanceMine = ref(0);
 const distanceAI = ref(0);
 const cities = ref<City[]>([]);
+
+// const citiesStore = useCitiesStore();
+// const citiesList = computed(() => citiesStore.citiesList);
 
 const tokyoLocation = {
   latitude: 35.6895,
   longitude: 139.6917,
 };
 
-const loadCities = async () => {
-  try {
-    cities.value = await fetchCities();
-  } catch (err) {
-    console.error("Failed to fetch cities:", err);
-  }
-};
+// const loadCities = async () => {
+//   try {
+//     cities.value = await fetchCities();
+//   } catch (err) {
+//     console.error("Failed to fetch cities:", err);
+//   }
+// };
 
 watch(
   [latitude, longitude],
@@ -68,12 +74,7 @@ defineProps<{ msg: string }>();
   <p>{{ msg }}</p>
   <div>
     <h2>List of Cities</h2>
-    <ul>
-      <!-- Note: Key is country, because we have 25 unique countries so its okay -->
-      <li v-for="city in cities" :key="city.country">
-        {{ city.name }} - {{ city.country }}
-      </li>
-    </ul>
+    <Table :citiesList="cities" />
   </div>
 </template>
 
