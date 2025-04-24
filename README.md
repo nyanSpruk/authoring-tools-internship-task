@@ -149,8 +149,8 @@ You can use **any tech stack** you're comfortable with, and a **UI framework of 
 
 ## 🚀 How to Submit
 
-- Fork this repository to your own Github before you start your task.
-- When you're happy with the result submit a **pull request** and send us the link or add `markopangerceltra` as collaborator if it's a private repository.
+- Clone this repository and push to a brand new repository before you start your task.
+- When you're happy with the result submit a **pull request** and send us the link to the repository.
 - In your README or comments, please include:
   - Instructions for running the app (especially if backend or PHP is involved)
   - A short explanation of your distance formula
