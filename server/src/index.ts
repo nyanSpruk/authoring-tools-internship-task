@@ -1,8 +1,10 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 const port = 3210;
 
 // Note: Since we only have one interface, I have defined it here
