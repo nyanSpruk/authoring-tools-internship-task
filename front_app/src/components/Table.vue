@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
 import { useCitiesStore } from "../stores/cityStore";
 import { useLocationStore } from "../stores/locationStore";
 import { useDistanceStore } from "../stores/distanceStore";
@@ -10,13 +9,7 @@ const locationStore = useLocationStore();
 const distanceStore = useDistanceStore();
 const { distancesMine, distancesAI } = storeToRefs(distanceStore);
 
-const showOnlyWithMagnets = ref(false);
-
-const filteredCities = computed(() => {
-  return showOnlyWithMagnets.value
-    ? citiesStore.citiesList.filter((city) => city.hasMagnet)
-    : citiesStore.citiesList;
-});
+const { filteredCities, showOnlyWithMagnets } = storeToRefs(citiesStore);
 </script>
 
 <template>

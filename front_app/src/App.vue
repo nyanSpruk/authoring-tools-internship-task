@@ -3,13 +3,12 @@ import { computed, onMounted, ref } from "vue";
 import Table from "./components/Table.vue";
 import { useCitiesStore } from "./stores/cityStore";
 import { useLocationStore } from "./stores/locationStore";
-import { useDistanceStore } from "./stores/distanceStore";
 import { useMagnetStore } from "./stores/magnetStore";
+import Globe from "./components/Globe.vue";
 
 const citiesStore = useCitiesStore();
 const magnetStore = useMagnetStore();
 const locationStore = useLocationStore();
-const distanceStore = useDistanceStore();
 
 const loading = ref(true);
 const fetchError = ref<string | null>(null);
@@ -67,6 +66,7 @@ onMounted(async () => {
     >
       Use my location
     </button>
+    <Globe />
     <Table />
   </div>
 </template>
