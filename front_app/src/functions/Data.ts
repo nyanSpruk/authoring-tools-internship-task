@@ -21,7 +21,6 @@ export const fetchCities = async (): Promise<City[]> => {
 export const fetchMagnets = async (): Promise<Magnet[]> => {
   try {
     const response = await fetch("https://api.nyanspruk.com");
-    console.debug(response);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
