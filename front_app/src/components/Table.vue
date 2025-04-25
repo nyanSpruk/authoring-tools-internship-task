@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useCitiesStore } from "../stores/cityStore";
 import { useLocationStore } from "../stores/locationStore";
 import { useDistanceStore } from "../stores/distanceStore";
@@ -8,12 +8,22 @@ import { storeToRefs } from "pinia";
 const citiesStore = useCitiesStore();
 const locationStore = useLocationStore();
 const distanceStore = useDistanceStore();
-const { distancesMine, distancesAI } = storeToRefs(distanceStore); // for reactivity
+const { distancesMine, distancesAI } = storeToRefs(distanceStore);
 
-const citiesList = computed(() => citiesStore.citiesList);
+const showOnlyWithMagnets = ref(false);
+
+const filteredCities = computed(() => {
+  return showOnlyWithMagnets.value
+    ? citiesStore.citiesList.filter((city) => city.hasMagnet)
+    : citiesStore.citiesList;
+});
 </script>
 
 <template>
+  <label style="display: block; margin-bottom: 10px">
+    <input type="checkbox" v-model="showOnlyWithMagnets" />
+    Show only cities with magnets
+  </label>
   <table>
     <thead>
       <tr>
@@ -23,12 +33,13 @@ const citiesList = computed(() => citiesStore.citiesList);
         <th class="hide">Coordinates</th>
         <th>Distance (My)</th>
         <th class="hide">Distance (AI)</th>
+        <th class="hide">Magnet</th>
       </tr>
     </thead>
     <tbody>
       <tr
-        v-if="citiesList?.length"
-        v-for="(city, index) in citiesList"
+        v-if="filteredCities.length"
+        v-for="(city, index) in filteredCities"
         @click="
           locationStore.updateCurrentLocation({
             latitude: city.lat,
@@ -42,6 +53,9 @@ const citiesList = computed(() => citiesStore.citiesList);
         <td class="hide">( {{ city.lat }}, {{ city.lng }})</td>
         <td>{{ distancesMine[index]?.toFixed(2) }} km</td>
         <td class="hide">{{ distancesAI[index]?.toFixed(2) }} km</td>
+        <td class="hide">
+          {{ city.hasMagnet ? "Yes" : "No" }}
+        </td>
       </tr>
     </tbody>
   </table>

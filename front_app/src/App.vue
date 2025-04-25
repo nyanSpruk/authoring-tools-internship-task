@@ -4,8 +4,10 @@ import Table from "./components/Table.vue";
 import { useCitiesStore } from "./stores/cityStore";
 import { useLocationStore } from "./stores/locationStore";
 import { useDistanceStore } from "./stores/distanceStore";
+import { useMagnetStore } from "./stores/magnetStore";
 
 const citiesStore = useCitiesStore();
+const magnetStore = useMagnetStore();
 const locationStore = useLocationStore();
 const distanceStore = useDistanceStore();
 
@@ -49,6 +51,7 @@ onMounted(async () => {
   </div>
 
   <div v-else>
+    <p>Magnet count: {{ magnetStore.magnetList.length }}</p>
     <p>
       Your location: ({{ userLocation?.latitude }},
       {{ userLocation?.longitude }})

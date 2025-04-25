@@ -7,7 +7,12 @@ export interface City {
   lng: number;
 }
 
-export interface ApiResponse {
+export interface Magnet {
+  code: string;
+  name: string;
+}
+
+export interface ApiResponse<T> {
   count: number;
-  data: City[];
+  data: T[];
 }

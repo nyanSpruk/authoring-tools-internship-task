@@ -27,7 +27,8 @@ When the user clicks on a city (a row), the app should recalculate distances fro
 - [x] Implement state management
 - [x] Display in a Responsive Table
 - [x] UI Interaction
-- [ ] Optional Fun Challenge
+- [x] Optional Fun Challenge 1 - Custom Data Column
+- [ ] Optional Fun Challenge 2
 - [ ] Make design look nice
 - [ ] Write a README
   
@@ -75,6 +76,10 @@ I used `ChatGPT o4-mini-high`, which is described as "Great at coding and visual
 In typescript can you generate a method to calculate the distance between two points on a sphere and return a rounded distance in kilometers to 3 decimal places
 ```
 The AI generated code can be found in the `front_app/src/functions/Distance.ts` file in the `haversineDistanceAI` function. Alongside the code, it also wrote a explanation of params and return values, which I found very useful.
+
+### Optional Fun Challenges
+#### Custom Data Column
+I have added a custom data column that shows if I have a souvenir magnet from that country, with a toggle to filter the table with only yes values. The data is fetched from my own API endpoint `https://api.nyanspruk.com` and the visual version of all my souvenirs is available on my [website](https://magnets.nyanspruk.com/).
 
 ## ✅ Requirements
 
