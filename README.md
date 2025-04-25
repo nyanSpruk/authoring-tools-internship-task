@@ -28,7 +28,7 @@ When the user clicks on a city (a row), the app should recalculate distances fro
 - [x] Display in a Responsive Table
 - [x] UI Interaction
 - [x] Optional Fun Challenge 1 - Custom Data Column
-- [ ] Optional Fun Challenge 2
+- [x] Optional Fun Challenge 2 - 3D Earth
 - [ ] Make design look nice
 - [ ] Write a README
   

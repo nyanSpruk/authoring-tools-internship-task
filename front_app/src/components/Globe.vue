@@ -10,7 +10,7 @@ import Globe from "globe.gl";
 import { useCitiesStore } from "../stores/cityStore";
 import { storeToRefs } from "pinia";
 
-import notoSans from "../assets/Roboto_Regular.typeface.json";
+import notoSans from "../assets/Noto Sans_Regular.typeface.json";
 import { useDistanceStore } from "../stores/distanceStore";
 import { useLocationStore } from "../stores/locationStore";
 
