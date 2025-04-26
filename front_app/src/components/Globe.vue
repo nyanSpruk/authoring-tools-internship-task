@@ -5,12 +5,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, computed, type CSSProperties } from "vue";
-import Globe from "globe.gl";
-import { useCitiesStore } from "../stores/cityStore";
-import { storeToRefs } from "pinia";
-
 import notoSans from "../assets/Noto Sans_Regular.typeface.json";
+import Globe from "globe.gl";
+import { ref, onMounted, watch, computed, type CSSProperties } from "vue";
+
+import { storeToRefs } from "pinia";
+import { useCitiesStore } from "../stores/cityStore";
 import { useDistanceStore } from "../stores/distanceStore";
 import { useLocationStore } from "../stores/locationStore";
 
@@ -20,6 +20,7 @@ let globeInstance: any = null;
 const cityStore = useCitiesStore();
 const distanceStore = useDistanceStore();
 const locationStore = useLocationStore();
+
 const { currentLocation, userLocation } = storeToRefs(locationStore);
 const { filteredCities } = storeToRefs(cityStore);
 const { distancesMine } = storeToRefs(distanceStore);
@@ -30,10 +31,22 @@ const windowHeight = ref(window.innerHeight);
 const size = computed(() => {
   const calculatedSize =
     windowHeight.value > windowWidth.value
-      ? windowWidth.value * 0.9
-      : windowHeight.value * 0.9;
+      ? windowWidth.value * 0.8
+      : windowHeight.value * 0.8;
 
-  return Math.min(calculatedSize, 800);
+  if (windowWidth.value < 450) {
+    return Math.min(calculatedSize, 300);
+  }
+  if (windowWidth.value < 600) {
+    return Math.min(calculatedSize, 400);
+  }
+  if (windowWidth.value < 1200) {
+    return 480;
+  }
+  if (windowWidth.value < 1500) {
+    return Math.min(calculatedSize, 600);
+  }
+  return Math.min(calculatedSize, 700);
 });
 
 const globeStyle = computed(() => {
@@ -75,9 +88,17 @@ onMounted(async () => {
       .height(size.value)
       .width(size.value);
 
+    globeInstance.controls().autoRotate = true;
+    globeInstance.controls().autoRotateSpeed = 0.5;
+    globeInstance.pointOfView({
+      lat: userLocation.value?.latitude,
+      lng: userLocation.value?.longitude,
+      altitude: 1.5,
+    });
+
     // Zoom clamping
-    const minZoom = 0.75;
-    const maxZoom = 3.25;
+    const minZoom = 0.5;
+    const maxZoom = 2.5;
     globeInstance.controls().addEventListener("change", () => {
       const pov = globeInstance.pointOfView();
       if (pov.altitude < minZoom) {
@@ -96,8 +117,20 @@ function onLabelClick(label: { lat: number; lng: number }) {
     latitude: label.lat,
     longitude: label.lng,
   });
+  zoomToLocation(label.lat, label.lng);
 }
 
+function zoomToLocation(lat: number, lng: number, altitude = 0.65) {
+  if (!globeInstance) return;
+
+  globeInstance.controls().autoRotate = false;
+  globeInstance.pointOfView({ lat, lng, altitude }, 1000);
+}
+
+// This is so Table.vue can access the function
+defineExpose({
+  zoomToLocation,
+});
 function updateLabels() {
   if (!globeInstance || !filteredCities.value.length) return;
 
@@ -121,7 +154,12 @@ function updateLabels() {
       name: isCurrentLoc
         ? `You are in ${city.name}`
         : distance !== null
-        ? `${city.name} (${distance.toFixed(0)} km)`
+        ? `${city.name}`
+        : city.name,
+      toolTipText: isCurrentLoc
+        ? `You are in ${city.name}`
+        : distance !== null
+        ? `${city.name} - ${distance.toFixed(2)} km`
         : city.name,
       size: city.hasMagnet ? 0.45 : 0.4,
       color: isCurrentLoc ? "red" : city.hasMagnet ? "yellow" : "white",
@@ -135,6 +173,7 @@ function updateLabels() {
       lat: userLoc.latitude,
       lng: userLoc.longitude,
       name: "Your location",
+      toolTipText: `Your location`,
       size: 0.5,
       color: "cyan",
     });
@@ -144,8 +183,10 @@ function updateLabels() {
     .labelsData([...citiesWithDistance, ...locationLabels])
     .labelText("name")
     .labelSize("size")
+    .labelLabel("toolTipText")
     .labelColor("color")
     .labelDotRadius(0.5)
+    .labelAltitude(0.02)
     .labelResolution(2)
     .labelsTransitionDuration(0)
     .onLabelClick((d: any) => onLabelClick(d))
@@ -156,9 +197,9 @@ function updateLabels() {
 <style scoped>
 .globe-wrapper {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
+  /* min-width: 900px; */
   display: flex;
-  justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
