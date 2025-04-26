@@ -89,7 +89,7 @@ onMounted(async () => {
       .width(size.value);
 
     globeInstance.controls().autoRotate = true;
-    globeInstance.controls().autoRotateSpeed = 0.5;
+    globeInstance.controls().autoRotateSpeed = 0.6;
     globeInstance.pointOfView({
       lat: userLocation.value?.latitude,
       lng: userLocation.value?.longitude,
@@ -125,6 +125,13 @@ function zoomToLocation(lat: number, lng: number, altitude = 0.65) {
 
   globeInstance.controls().autoRotate = false;
   globeInstance.pointOfView({ lat, lng, altitude }, 1000);
+
+  setTimeout(() => {
+    if (globeInstance) {
+      globeInstance.controls().autoRotate = true;
+      globeInstance.pointOfView({ lat, lng, altitude: 1.5 }, 1000);
+    }
+  }, 5000);
 }
 
 // This is so Table.vue can access the function
