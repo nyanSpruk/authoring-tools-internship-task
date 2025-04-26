@@ -41,12 +41,13 @@ body {
   font-size: 4rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color:white
 }
 
 .description {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  margin-top:0;
   color: #fff;
   text-align: center;
 }

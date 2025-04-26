@@ -166,7 +166,7 @@ function updateLabels() {
       toolTipText: isCurrentLoc
         ? `You are in ${city.name}`
         : distance !== null
-        ? `${city.name} - ${distance.toFixed(2)} km`
+        ? `${city.name} - ${distance} km`
         : city.name,
       size: city.hasMagnet ? 0.45 : 0.4,
       color: isCurrentLoc ? "red" : city.hasMagnet ? "yellow" : "white",
