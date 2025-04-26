@@ -25,6 +25,7 @@ const globeRef = ref<InstanceType<typeof Globe> | null>(null);
 const handleZoomToLocation = (lat: number, lng: number) => {
   globeRef.value?.zoomToLocation(lat, lng);
 };
+
 onMounted(async () => {
   loading.value = true;
   fetchError.value = null;
@@ -132,10 +133,10 @@ onMounted(async () => {
   padding: 0.5rem 1rem;
   border-radius: 2.5rem;
   height: 3rem;
-  width: 50%;
+  width: 16rem;
   cursor: pointer;
   box-shadow: 0 0 16px #0581b66a;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Only color and shadow transition */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .location-btn:hover {
@@ -146,7 +147,7 @@ onMounted(async () => {
 .switch-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Space between switch and text */
+  gap: 0.5rem;
   cursor: pointer;
 }
 
@@ -196,10 +197,17 @@ input:checked + .slider:before {
   user-select: none;
 }
 
+@media screen and (max-width: 1450px) {
+  .left-container {
+    justify-content: start;
+    gap: 2rem;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .left-container {
     padding: 0 1rem 0 1rem;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .main-view {
@@ -228,6 +236,47 @@ input:checked + .slider:before {
     flex: 1;
     min-width: 0;
     overflow: hidden;
+  }
+}
+
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .location-btn {
+    width: 100%;
+    height: 2.5rem;
+    max-width: 12rem;
+  }
+  .switch-container {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .slider {
+    width: 45px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 25px;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(16px);
   }
 }
 

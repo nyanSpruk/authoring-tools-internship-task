@@ -92,7 +92,7 @@ const emit = defineEmits<{
   overflow: hidden;
   margin: 1rem;
   z-index: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.9) inset, 0 0 16px #0582b6;
 }
 
@@ -132,7 +132,6 @@ td {
   overflow-wrap: anywhere;
 }
 
-/* Third th,td  change width to be smaller */
 th:nth-child(3),
 td:nth-child(3) {
   width: 2.5rem;
@@ -141,6 +140,10 @@ td:nth-child(3) {
 tbody tr:nth-child(odd),
 tbody tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.07);
 }
 
 tbody tr:hover,
@@ -183,8 +186,8 @@ tbody tr.selected {
     max-height: 95%;
   }
   .outer-scroll-wrapper {
-    margin: 0;
     scrollbar-width: none;
+    margin: 0;
     max-height: 42vh;
   }
 }
@@ -215,6 +218,11 @@ tbody tr.selected {
 @media (max-width: 480px) {
   table {
     font-size: 0.8rem;
+  }
+
+  th,
+  td {
+    height: 30px;
   }
 
   .outer-scroll-wrapper {

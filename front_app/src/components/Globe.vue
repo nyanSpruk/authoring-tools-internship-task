@@ -40,7 +40,7 @@ const size = computed(() => {
   if (windowWidth.value < 600) {
     return Math.min(calculatedSize, 400);
   }
-  if (windowWidth.value < 1200) {
+  if (windowWidth.value < 1450) {
     return 480;
   }
   if (windowWidth.value < 1500) {
