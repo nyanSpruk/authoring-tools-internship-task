@@ -105,7 +105,6 @@ onMounted(async () => {
 .main-view {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .globe-container {

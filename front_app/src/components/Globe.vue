@@ -131,7 +131,7 @@ function zoomToLocation(lat: number, lng: number, altitude = 0.65) {
       globeInstance.controls().autoRotate = true;
       globeInstance.pointOfView({ lat, lng, altitude: 1.5 }, 1000);
     }
-  }, 5000);
+  }, 3000);
 }
 
 // This is so Table.vue can access the function

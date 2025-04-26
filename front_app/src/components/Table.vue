@@ -75,7 +75,7 @@ const emit = defineEmits<{
 .scrollable-content {
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 93vh;
+  max-height: 90vh;
 }
 
 .scrollable-content::-webkit-scrollbar {
@@ -84,12 +84,6 @@ const emit = defineEmits<{
 .scrollable-content {
   scrollbar-width: none;
   -ms-overflow-style: none;
-}
-
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
 }
 
 .rounded-mask {
@@ -114,6 +108,7 @@ thead {
   position: sticky;
   top: 0;
   z-index: 1;
+  background-color: #172f4e;
 }
 
 th {
@@ -127,7 +122,7 @@ th {
 
 th,
 td {
-  padding: 8px 16px;
+  padding: 1rem 1.5rem;
   text-align: left;
   height: 60px;
   max-width: 50px;

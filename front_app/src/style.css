@@ -11,6 +11,7 @@ body,
 body {
   display: flex;
   flex-direction: column;
+  /* font-family: 'ui-sans-serif', 'system-ui', sans-serif; */
   font-family: 'Poppins', sans-serif;
   background: url("https://unpkg.com/three-globe@2.31.1/example/img/night-sky.png");
   background-position: 0 -1px;
