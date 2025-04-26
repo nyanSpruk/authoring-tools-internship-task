@@ -27,7 +27,7 @@ const emit = defineEmits<{
               <th class="first-col">City</th>
               <th class="hide">Country</th>
               <th class="hide">Code</th>
-              <th class="hide">Coordinates</th>
+              <th class="hide">Coords</th>
               <th>Distance (My)</th>
               <th class="hide">Distance (AI)</th>
               <th class="hide magnet-header">Magnet</th>
@@ -53,8 +53,8 @@ const emit = defineEmits<{
               <td class="hide">{{ city.country_name }}</td>
               <td class="hide">{{ city.country }}</td>
               <td class="hide">{{ city.lat }}, {{ city.lng }}</td>
-              <td>{{ distancesMine[index]?.toFixed(2) }} km</td>
-              <td class="hide">{{ distancesAI[index]?.toFixed(2) }} km</td>
+              <td>{{ distancesMine[index] }} km</td>
+              <td class="hide">{{ distancesAI[index] }} km</td>
               <td class="hide">{{ city.hasMagnet ? "Yes" : "No" }}</td>
             </tr>
           </tbody>
@@ -112,7 +112,7 @@ thead {
 }
 
 th {
-  background-color: #1e3a5fce;
+  background-color: #0581b66a;
   color: white;
   font-weight: 600;
   position: sticky;
@@ -130,6 +130,12 @@ td {
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: anywhere;
+}
+
+/* Third th,td  change width to be smaller */
+th:nth-child(3),
+td:nth-child(3) {
+  width: 2.5rem;
 }
 
 tbody tr:nth-child(odd),

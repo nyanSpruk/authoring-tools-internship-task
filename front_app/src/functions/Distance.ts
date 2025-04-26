@@ -21,7 +21,7 @@ export const haversineDistanceMine = (
   const p2 =
     Math.cos(latUser) * Math.cos(latCity) * (1 - Math.cos(lngCity - lngUser));
   const d = 2 * R * Math.asin(Math.sqrt((p1 + p2) / 2));
-  return Math.round(d) / 1000;
+  return Math.round(d / 1000);
 };
 
 /**
@@ -50,5 +50,5 @@ export function haversineDistanceAI(
 
   const distance = R * c;
 
-  return parseFloat(distance.toFixed(3));
+  return Math.round(distance);
 }
