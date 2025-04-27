@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import { type Magnet } from "../types/ExternalData";
-import { fetchMagnets } from "../functions/Data";
+import { fetchMagnets } from "../functions/data";
 
 export const useMagnetStore = defineStore("magnet", () => {
   const magnetList = ref<Magnet[]>([]);

@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { useCitiesStore } from "../stores/cityStore";
-import { useLocationStore } from "../stores/locationStore";
-import { useDistanceStore } from "../stores/distanceStore";
-import { storeToRefs } from "pinia";
-import { ref } from "vue";
-
-const citiesStore = useCitiesStore();
-const locationStore = useLocationStore();
-const distanceStore = useDistanceStore();
-const { distancesMine, distancesAI } = storeToRefs(distanceStore);
-const { filteredCities } = storeToRefs(citiesStore);
-const selectedIndex = ref<number | null>(null);
+import { useCityTable } from "../composable/useCityTable";
+import type { Location } from "../types/Location";
 
 const emit = defineEmits<{
-  (e: "row-click", lat: number, lng: number): void;
+  (e: "row-click", location: Location): void;
 }>();
+
+const {
+  filteredCities,
+  distancesMine,
+  distancesAI,
+  selectedIndex,
+  onRowClick,
+} = useCityTable(emit);
 </script>
 
 <template>
@@ -38,16 +36,7 @@ const emit = defineEmits<{
               v-for="(city, index) in filteredCities"
               :key="city.name + index"
               :class="{ selected: selectedIndex === index }"
-              @click="
-                () => {
-                  selectedIndex = index;
-                  locationStore.updateCurrentLocation({
-                    latitude: city.lat,
-                    longitude: city.lng,
-                  });
-                  emit('row-click', city.lat, city.lng);
-                }
-              "
+              @click="() => onRowClick(city, index)"
             >
               <td class="first-col">{{ city.name }}</td>
               <td class="hide">{{ city.country_name }}</td>

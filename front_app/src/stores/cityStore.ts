@@ -1,9 +1,9 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import { type City } from "../types/ExternalData";
-import { fetchCities } from "../functions/Data";
 
 import { useMagnetStore } from "./magnetStore";
+import { fetchCities } from "../functions/data";
 
 export const useCitiesStore = defineStore("city", () => {
   const citiesList = ref<(City & { hasMagnet: boolean })[]>([]);

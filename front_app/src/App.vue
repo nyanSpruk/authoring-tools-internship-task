@@ -1,44 +1,19 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
 import Table from "./components/Table.vue";
-import { useCitiesStore } from "./stores/cityStore";
-import { useLocationStore } from "./stores/locationStore";
 import Globe from "./components/Globe.vue";
-import { storeToRefs } from "pinia";
+import { useMainScreen } from "./composable/useMainScreen";
 
-const citiesStore = useCitiesStore();
-const locationStore = useLocationStore();
-
-const loading = ref(true);
-const fetchError = ref<string | null>(null);
-const isLoading = computed(
-  () => loading.value || locationStore.loadingLocation
-);
-const showRetryLocation = computed(() => !!locationStore.locationError);
-
-const userLocation = computed(() => locationStore.userLocation);
-
-const { showOnlyWithMagnets } = storeToRefs(citiesStore);
-
-const globeRef = ref<InstanceType<typeof Globe> | null>(null);
-
-const handleZoomToLocation = (lat: number, lng: number) => {
-  globeRef.value?.zoomToLocation(lat, lng);
-};
-
-onMounted(async () => {
-  loading.value = true;
-  fetchError.value = null;
-
-  try {
-    locationStore.getLocation();
-  } catch (err) {
-    fetchError.value = "Failed to load cities.";
-    console.error(err);
-  } finally {
-    loading.value = false;
-  }
-});
+const {
+  isLoading,
+  fetchError,
+  showRetryLocation,
+  userLocation,
+  locationStore,
+  showOnlyWithMagnets,
+  globeRef,
+  handleZoomToLocation,
+  handleUseMyLocation,
+} = useMainScreen();
 </script>
 
 <template>
@@ -66,17 +41,7 @@ onMounted(async () => {
               <button
                 class="location-btn"
                 v-if="userLocation"
-                @click="
-                  () => {
-                    if (userLocation) {
-                      locationStore.updateCurrentLocation(userLocation);
-                      handleZoomToLocation(
-                        userLocation.latitude,
-                        userLocation.longitude
-                      );
-                    }
-                  }
-                "
+                @click="handleUseMyLocation"
               >
                 Use My Location
               </button>
@@ -96,7 +61,6 @@ onMounted(async () => {
     </div>
   </div>
 </template>
-
 <style scoped>
 .content {
   flex: 1;

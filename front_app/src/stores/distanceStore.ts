@@ -6,7 +6,7 @@ import { useCitiesStore } from "./cityStore";
 import {
   haversineDistanceAI,
   haversineDistanceMine,
-} from "../functions/Distance";
+} from "../functions/distance";
 
 export const useDistanceStore = defineStore("distance", () => {
   const distancesMine = ref<number[]>([]);
