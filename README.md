@@ -102,8 +102,8 @@ Built using Express.js + TypeScript to serve city data:
 
 Example API calls:
 ```bash
-GET /cities/random?count=10
-GET /cities?page=2
+GET /api/random
+GET /api/data?page=2&limit=10
 ```
 
 ### Distance Calculation
