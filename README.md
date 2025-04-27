@@ -1,173 +1,132 @@
-# 🌍 Frontend/Full Stack Intern Task
+# 🧲 Magnet Miles
 
-Hey there! 👋
-
-Thanks for applying to our internship program! This is a small technical task that will be part of the **technical interview** process.
-
-You’ll build a mini app, submit it via a **GitHub pull request**, and we’ll review it together during a **collaborative code review session** — just like we do on the team. We're not expecting a perfect solution — we're more interested in how you **think**, **learn**, and **communicate your decisions**.
-
-If something isn’t finished or you’ve made trade-offs, that’s totally fine — just explain what you would do next or how you approached the problem.
+A Vue 3 app that calculates distances from your location to random cities, using two different Haversine formula implementations. It also includes a fun challenge with a custom data column about souvenir magnets.
 
 ---
 
-## 🧠 Task Overview
+## ✨ Features
 
-Build a small web app that loads a list of cities from a local server, calculates the distance from the user, and displays everything in a responsive table.
-When the user clicks on a city (a row), the app should recalculate distances from that city to the others.
-
----
-
-## TODO List
-
-- [x] Load City List
-- [x] Get Current Location
-- [x] Calculate Distance by own Formula
-- [x] Calculate Distance by AI-Generated Formula
-- [x] Fetch data from local server
-- [x] Implement state management
-- [x] Display in a Responsive Table
-- [x] UI Interaction
-- [x] Optional Fun Challenge 1 - Custom Data Column
-- [x] Optional Fun Challenge 2 - 3D Earth
-- [x] Make design look nice
-- [ ] Cleanup code
-- [ ] Write a README (explanation of how to use the app, how certain things work, how to install it, what AI used, etc.)
-  
-
-## 📘 Notes
-
-### Local Server
-I have decided to use express.js with typescript to create a local server that serves the list of cities, because I am the most familiar with it. 
-
-The local file `assets/cities.json` is quite large, and it takes a while to load. For this project we will work with 25 random cities, the frontend does not need to know the whole list of cities and I do not want the frontend to wait for the file to load. That is why I have create endpoints that will serve the data in a better way:
-
-#### 1. `/cities`
-Returns a paginated list of cities. For faster loading, the server will only return the first 25 cities with pagination.
-
-**Query Parameters:**
-- `limit` (optional) — Number of cities to return.  
-  _Default: `25`_
-- `page` (optional) — Page number for pagination.  
-  _Default: `1`_
-
-#### 2. `/cities/random`
-Returns a random selection of unique countries and cities, which will be used for our project. 
-
-**Query Parameters:**
-- `count` (optional) — Number of random cities to return.  
-  _Default: `25`_
-
----
-
-#### 🧪 Examples
-
-- `/api/random?count=10`  
-  → Returns 10 random cities.
-
-- `/api/data?page=2`  
-  → Returns the second set of 25 cities (i.e., cities 26–50).
-
-### Haversine Formula
-#### My implementation
-For my implementation of the distance between two points on a sphere, I used the Haversine formula. The equation used in my implementation was found on [wikipedia](https://en.wikipedia.org/wiki/Haversine_formula). The function can be found in `front_app/src/functions/Distance.ts` file in the `haversineDistanceMine` function.
-
-#### AI implementation
-I used `ChatGPT o4-mini-high`, which is described as "Great at coding and visual tasks". I don't use this model often, but I wanted to see how it would perform. I asked it the following prompt:
-```
-In typescript can you generate a method to calculate the distance between two points on a sphere and return a rounded distance in kilometers to 3 decimal places
-```
-The AI generated code can be found in the `front_app/src/functions/Distance.ts` file in the `haversineDistanceAI` function. Alongside the code, it also wrote a explanation of params and return values, which I found very useful.
-
-### Optional Fun Challenges
-#### Custom Data Column
-I have added a custom data column that shows if I have a souvenir magnet from that country, with a toggle to filter the table with only yes values. The data is fetched from my own API endpoint `https://api.nyanspruk.com` and the visual version of all my souvenirs is available on my [website](https://magnets.nyanspruk.com/).
-
-## ✅ Requirements
-
-### 1. Load City List
-- Your app should **fetch a list of city names** from a locally spawned server that serves the list of cities [`assets/cities.json`](assets/cities.json).
-  Use a public available *json server* of your choice. You can also use a service that hosts the file. 
-- From the response, randomly select **25 countries**, and then randomly select **1 city per country**.
-- Use these 25 cities as the source list for the rest of the task.
-
-### 2. Get Current Location
-- Use the **browser’s Geolocation API** to get the user's current location.
-
-### 3. Calculate Distance
-- Add **two distance columns** to your table:
-  - `Distance (Your Formula)`: Calculate the distance from the user to each city using **any formula you like** (e.g., Haversine). Be sure to provide your own implementation.
-    - 📌 Be sure to **briefly explain your formula** in the code or README.
-  - `Distance (AI-Generated)`: Recreate the same logic using an **AI-generated implementation** (e.g., using ChatGPT, GitHub Copilot, etc.).
-    - Note **how you used AI** (e.g., did it generate the code? help troubleshoot? suggest structure?).
-
-> 💡 We encourage and value the smart use of AI tools in our workflow — show us how you applied them.
-
----
-
-### 4. Display in a Responsive Table
-- Present all results in a styled, scrollable table.
-- The table should include the following columns:
-  - City Name
-  - Country Name
-  - Country Code
-  - Coordinates
-  - Distance (Your Formula)
-  - Distance (AI-Generated)
-- Make the table **responsive**:
-  - On very small screens (**< 200px**), show **only**:
-    - City Name
-    - Distance (Your Formula)
-
-### 5. UI Interaction
-- When the user clicks on a city name, recalculate distances from the selected city to all the others (instead of the current location).
-
----
-
-## 🎯 Optional Fun Challenge
-
-If you're up for a bit of fun, try adding one of the following features:
-
-- **Custom Data Column** 📊: Add a column of your choice to enhance the city data — examples include:
-  - Current weather
-  - Temperature
-  - Wind speed
-  - Population
-  - Local time
-  - Map
-  - Anything else fun or informative
-
-  Then, provide a **UI toggle** (e.g., switch or dropdown) that lets users filter the table to only show entries that match criteria based on this custom column.
-  - For example: cities with temperature above 20°C, population below 1 million, or particularly windy places.
-
-This is totally optional — just a chance to show off your creativity and have fun with the task!
+- Load a random selection of 25 cities from a local server
+- Calculate distances from your current location
+- Recalculate distances from any clicked city
+- Show two distance calculations: 
+  - **My own Haversine formula**
+  - **AI-generated formula**
+- Responsive table with city info and distances
+- Optional Fun Challenge:
+  - **Custom Data Column**: "Do I have a souvenir magnet?" (+ filter toggle)
 
 ---
 
 ## 🛠️ Tech Stack
 
-You can use **any tech stack** you're comfortable with, and a **UI framework of your choice**.
-
-> 💡 **Bonus Points**  
-> We use **Vue 3 (Composition API)** with **Pinia** for state management and **TypeScript**.  
-> Using this stack will earn you extra credit during the review.
+- **Frontend**: Vue 3 (Composition API), Pinia, TypeScript
+- **Backend**: Express.js (TypeScript)
 
 ---
 
-## 🚀 How to Submit
+## 📥 Installation
 
-- Clone this repository and push to a brand new repository before you start your task.
-- When you're happy with the result submit a **pull request** and send us the link to the repository.
-- In your README or comments, please include:
-  - Instructions for running the app (especially if backend or PHP is involved)
-  - A short explanation of your distance formula
-  - How you used AI tools (if applicable)
-  - Any assumptions or trade-offs you made
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:nyanSpruk/authoring-tools-internship-task.git
+   cd authoring-tools-internship-task
+   ```
+
+2. Install dependencies:
+   ```bash
+   # Frontend
+   cd front_app/
+   npm install
+   
+   # Backend
+   cd server/
+   npm install
+   ```
+
+3. Start the local server:
+   ```bash
+   cd server/
+   npm run dev
+   ```
+
+4. Start the frontend app:
+   ```bash
+   cd front_app/
+   npm run dev
+   ```
+
+5. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## 💬 Questions?
+## 🧪 How to Use
 
-If anything is unclear, feel free to reach out to `markopangerceltra` — we're happy to help.
+- When the app loads, it fetches **25 random cities** from the server.
+- Allow location access when prompted to calculate distances.
+- Click on any **city row** to recalculate distances from that city.
+- Use the toggle to **filter** cities from the countries where I have a magnet souvenir.
+- Clicking a city on the globe, it will recalculate distances from that city.
+- Hovering over a city will show its name and distance from the selected city.
 
-We’re looking forward to seeing your work — good luck and have fun!
+---
 
+## 📸 Screenshots / Demo
+
+| Home View | Clicked City View | Magnet Filter |
+|:---------:|:-----------------:|:-------------:|
+| ![Home Screenshot](link_to_home_screenshot) | ![Clicked City Screenshot](link_to_clicked_city_screenshot) | ![Filter Screenshot](link_to_filter_screenshot) |
+
+_(You can also add a short video demo if you want!)_
+
+---
+
+## 📘 Notes
+
+### Local Server
+
+Built using Express.js + TypeScript to serve city data:
+- `/cities` – paginated list (default 25 cities)
+- `/cities/random` – random selection (default 25 cities)
+
+Example API calls:
+```bash
+GET /cities/random?count=10
+GET /cities?page=2
+```
+
+### Distance Calculation
+
+- **My Implementation**: `haversineDistanceMine`  
+  → Manual Haversine formula (from [Wikipedia](https://en.wikipedia.org/wiki/Haversine_formula))  
+- **AI Implementation**: `haversineDistanceAI`  
+  → Generated by **ChatGPT o4-mini-high** using a custom prompt.  
+
+Both functions are located in:  
+`front_app/src/functions/Distance.ts`
+
+### Fun Challenge - Custom Data Column
+
+- "Magnet Owned?" column added, showing if I have a souvenir magnet from that country.
+- Data fetched from my personal API: [api.nyanspruk.com](https://api.nyanspruk.com)
+- Full visual collection at: [magnets.nyanspruk.com](https://magnets.nyanspruk.com)
+
+---
+
+## 🤖 AI Usage
+
+I used **ChatGPT** to assist in several parts of the project:
+
+- **Code Refactoring**:  
+  Helped me optimize and clean up some TypeScript and Vue-specific structures, especially around state management with Pinia and component organization.
+  
+- **Vue Features**:  
+  Assisted with best practices for Composition API usage, such as properly structuring `setup()` functions and reactive states.
+  
+- **Distance Calculation**:  
+  Generated the second version of the Haversine formula, providing clean and easy-to-understand TypeScript code along with param/return explanations.
+  
+- **README Writing**:  
+  Helped polish the README structure and wording for better clarity and professionalism.
+
+---
