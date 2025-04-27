@@ -126,20 +126,20 @@ const {
 }
 
 .location-btn {
-  background-color: #046e9c;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 2.5rem;
   height: 3rem;
   width: 16rem;
   cursor: pointer;
-  box-shadow: 0 0 16px #0581b66a;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 16px var(--color-primary-light-alpha);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .location-btn:hover {
   background-color: rgb(13, 103, 162);
-  box-shadow: 0 0 16px #1382cb;
+  box-shadow: 0 0 16px var(--color-primary-light);
 }
 
 .switch-container {
@@ -178,12 +178,12 @@ const {
 }
 
 input:checked + .slider {
-  background-color: #046e9c;
-  box-shadow: 0 0 10px #0582b6;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 10px var(--color-primary-light);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 10px #0582b6;
+  box-shadow: 0 0 10px var(--color-primary-light);
 }
 
 input:checked + .slider::before {

@@ -80,7 +80,8 @@ const {
   overflow: hidden;
   z-index: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.9) inset, 0 0 16px #0582b6;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.9) inset,
+    0 0 16px var(--color-primary-light);
 }
 
 table {
@@ -113,7 +114,7 @@ td {
 }
 
 th {
-  background-color: #0581b66a;
+  background-color: var(--color-primary-light-alpha);
   color: white;
   font-weight: 600;
 }
