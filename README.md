@@ -81,6 +81,10 @@ A Vue 3 app that calculates distances from your location to random cities, using
   <img src="./media/mobile-1.png" alt="Mobile View" width="300"/>
 </p>
 
+
+https://github.com/user-attachments/assets/286f6573-7f7b-4123-b152-834a9035acbf
+
+
 ---
 
 ## 📘 Notes
