@@ -61,6 +61,7 @@ const {
     </div>
   </div>
 </template>
+
 <style scoped>
 .content {
   flex: 1;
@@ -68,9 +69,42 @@ const {
   flex-direction: column;
 }
 
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.description {
+  font-size: 1.1rem;
+  margin-top: 0;
+  color: #fff;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+}
+
 .main-view {
   display: flex;
   flex-direction: column;
+}
+
+.left-container {
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
 }
 
 .globe-container {
@@ -79,15 +113,16 @@ const {
   gap: 1.5rem;
 }
 
-.left-container {
-  padding: 0 2rem 0 2rem;
-  display: flex;
-  gap: 4rem;
-  flex-direction: column;
-  align-items: center;
-}
 #globe {
   padding-bottom: 4rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .location-btn {
@@ -112,6 +147,7 @@ const {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  width: auto;
 }
 
 .switch-container input {
@@ -129,11 +165,11 @@ const {
   transition: 0.4s;
 }
 
-.slider:before {
+.slider::before {
   content: "";
   position: absolute;
-  height: 26px;
   width: 26px;
+  height: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -150,7 +186,7 @@ input:focus + .slider {
   box-shadow: 0 0 10px #0582b6;
 }
 
-input:checked + .slider:before {
+input:checked + .slider::before {
   transform: translateX(26px);
 }
 
@@ -160,16 +196,33 @@ input:checked + .slider:before {
   user-select: none;
 }
 
+.location-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.location-info {
+  flex-grow: 1;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 @media screen and (max-width: 1450px) {
   .left-container {
-    justify-content: start;
+    justify-content: flex-start;
     gap: 2rem;
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
   .left-container {
-    padding: 0 1rem 0 1rem;
+    padding: 0 1rem;
     gap: 1.25rem;
   }
 
@@ -208,11 +261,13 @@ input:checked + .slider:before {
     align-items: center;
     gap: 1rem;
   }
+
   .location-btn {
     width: 100%;
-    height: 2.5rem;
     max-width: 12rem;
+    height: 2.5rem;
   }
+
   .switch-container {
     width: 100%;
     justify-content: center;
@@ -221,50 +276,17 @@ input:checked + .slider:before {
   .slider {
     width: 45px;
     height: 25px;
-    background-color: #ccc;
     border-radius: 25px;
-    transition: 0.4s;
   }
 
-  .slider:before {
-    content: "";
-    position: absolute;
-    height: 20px;
+  .slider::before {
     width: 20px;
-    left: 4px;
+    height: 20px;
     bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
   }
 
-  input:checked + .slider:before {
+  input:checked + .slider::before {
     transform: translateX(16px);
   }
-}
-
-.location-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.location-info {
-  flex-grow: 1;
-}
-
-.toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 </style>
