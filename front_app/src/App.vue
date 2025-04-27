@@ -118,10 +118,9 @@ onMounted(async () => {
 .left-container {
   padding: 0 2rem 0 2rem;
   display: flex;
-  gap: 2rem;
+  gap: 4rem;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 }
 #globe {
   padding-bottom: 4rem;

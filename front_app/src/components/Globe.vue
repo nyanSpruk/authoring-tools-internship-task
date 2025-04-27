@@ -13,6 +13,7 @@ import { storeToRefs } from "pinia";
 import { useCitiesStore } from "../stores/cityStore";
 import { useDistanceStore } from "../stores/distanceStore";
 import { useLocationStore } from "../stores/locationStore";
+import { markerSvg } from "../utils/marker";
 
 const globeContainer = ref<HTMLElement | null>(null);
 let globeInstance: any = null;
@@ -27,6 +28,8 @@ const { distancesMine } = storeToRefs(distanceStore);
 
 const windowWidth = ref(window.innerWidth);
 const windowHeight = ref(window.innerHeight);
+
+const zoomTimeout = ref<number | null>(null);
 
 const size = computed(() => {
   const calculatedSize =
@@ -123,14 +126,21 @@ function onLabelClick(label: { lat: number; lng: number }) {
 function zoomToLocation(lat: number, lng: number, altitude = 0.65) {
   if (!globeInstance) return;
 
+  // Cancel any existing timeout. Want to keep only last
+  if (zoomTimeout.value) {
+    clearTimeout(zoomTimeout.value);
+    zoomTimeout.value = null;
+  }
+
   globeInstance.controls().autoRotate = false;
   globeInstance.pointOfView({ lat, lng, altitude }, 1000);
 
-  setTimeout(() => {
+  zoomTimeout.value = setTimeout(() => {
     if (globeInstance) {
       globeInstance.controls().autoRotate = true;
       globeInstance.pointOfView({ lat, lng, altitude: 1.5 }, 1000);
     }
+    zoomTimeout.value = null;
   }, 3000);
 }
 
@@ -138,6 +148,7 @@ function zoomToLocation(lat: number, lng: number, altitude = 0.65) {
 defineExpose({
   zoomToLocation,
 });
+
 function updateLabels() {
   if (!globeInstance || !filteredCities.value.length) return;
 
@@ -181,19 +192,33 @@ function updateLabels() {
       lng: userLoc.longitude,
       name: "Your location",
       toolTipText: `Your location`,
-      size: 0.5,
+      size: 0.45,
       color: "cyan",
     });
   }
 
   globeInstance
     .labelsData([...citiesWithDistance, ...locationLabels])
+    .htmlElementsData([...citiesWithDistance, ...locationLabels])
+    .htmlElement((d: any) => {
+      const el = document.createElement("div");
+      el.innerHTML = markerSvg;
+      el.style.color = d.color;
+      el.style.width = `${d.size * 25}px`;
+      el.style.transition = "opacity 250ms";
+      el.style.cursor = "pointer";
+      return el;
+    })
+    .htmlElementVisibilityModifier(
+      (el: any, isVisible: boolean) => (el.style.opacity = isVisible ? 1 : 0)
+    )
+    .htmlAltitude(0.015)
     .labelText("name")
     .labelSize("size")
     .labelLabel("toolTipText")
     .labelColor("color")
-    .labelDotRadius(0.5)
-    .labelAltitude(0.02)
+    .labelDotRadius(0.01)
+    .labelAltitude(0.015)
     .labelResolution(2)
     .labelsTransitionDuration(0)
     .onLabelClick((d: any) => onLabelClick(d))
